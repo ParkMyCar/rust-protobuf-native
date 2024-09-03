@@ -57,7 +57,7 @@ VirtualSourceTree* NewVirtualSourceTree() { return new VirtualSourceTree(); }
 void DeleteVirtualSourceTree(VirtualSourceTree* tree) { delete tree; }
 
 void VirtualSourceTree::AddFile(absl::string_view name, rust::Vec<rust::u8> contents) {
-    std::cout << name << std::endl;
+    std::cout << "HELLO WORLD FROM C++" << std::endl;
     files_[std::string(name)] = contents;
 }
 

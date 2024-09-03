@@ -362,14 +362,19 @@ impl Drop for VirtualSourceTree {
 impl VirtualSourceTree {
     /// Creates a new virtual source tree.
     pub fn new() -> Pin<Box<VirtualSourceTree>> {
+        println!("HERE 1");
         let tree = ffi::NewVirtualSourceTree();
+        println!("HERE 2");
         unsafe { Self::from_ffi_owned(tree) }
     }
 
     /// Adds a file to the source tree with the specified name and contents.
     pub fn add_file(self: Pin<&mut Self>, filename: &Path, contents: Vec<u8>) {
         let filename = ProtobufPath::from(filename);
-        self.as_ffi_mut().AddFile(filename.into(), contents)
+        println!("OUR FILENAME {filename:?}");
+        let filename = filename.into();
+        println!("MADE FILENAME");
+        self.as_ffi_mut().AddFile(filename, contents)
     }
 
     unsafe_ffi_conversions!(ffi::VirtualSourceTree);
