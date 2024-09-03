@@ -58,7 +58,10 @@ void DeleteVirtualSourceTree(VirtualSourceTree* tree) { delete tree; }
 
 void VirtualSourceTree::AddFile(absl::string_view name, rust::Vec<rust::u8> contents) {
     std::cout << "HELLO WORLD FROM C++" << std::endl;
-    files_[std::string(name)] = contents;
+    auto s = std::string(name);
+    std::cout << "MADE OUR STRING" << std::endl;
+    std::cout << s << std::endl;
+    files_[s] = contents;
 }
 
 io::ZeroCopyInputStream* VirtualSourceTree::Open(absl::string_view filename) {
